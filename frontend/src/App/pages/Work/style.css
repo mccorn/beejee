@@ -1,0 +1,84 @@
+.Layout {
+    width: 880px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 50, 0.2);
+    padding: 50px;
+}
+
+.Task.Task_head {
+    border: 1px solid black;
+}
+
+.Task-Cell {
+    position: relative;
+}
+
+.Task-Cell.current {
+    text-decoration: underline;
+}
+
+.Task-Cell.asc::before {
+    position: absolute;
+    content: "\2BC5";
+    right: 5px;
+}
+
+.Task-Cell.desc::after {
+    position: absolute;
+    content: "\2BC6";
+    right: 5px;
+}
+
+.Work-Content {
+    grid-gap: 20px;
+    margin-bottom: 20px;
+}
+
+.Work-Footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.InputWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 10px;
+}
+
+.bordered {
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
+.Panel {
+    padding: 20px;
+}
+
+.row {
+    display: flex;
+}
+
+.row:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.line:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.clickable:not(.disabled) {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.clickable:not(.disabled):hover {
+    opacity: 1;
+}
+
+.Error-Message {
+    color: darkred;
+}
+
+.Token {
+    word-break: break-all;
+}
