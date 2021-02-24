@@ -5,6 +5,31 @@ import history, {BASE_URL_REQ, USER} from '../../../history';
 
 const ApiInt = {
   apiIsBusy: false,
+  ajaxGet: (func, data) => {
+    // console.log('ajaxReq data', func, data);
+    let form = new FormData();
+    Object.keys(data).forEach((id) => {
+      form.append(id, data[id]);
+    });
+
+    return new Promise((resolve, reject) => {
+      $.get(
+        `${BASE_URL_REQ}/${func}`,
+        {
+          developer: USER,
+          ...data,
+        })
+        .done((resp) => {
+          if (resp.status === "ok") {
+            console.warn('done_resolve', resp);
+            resolve(resp);
+          } else {
+            console.warn('done_reject', resp);
+            resolve(resp);
+          }
+        })
+    });
+  },
   ajaxReq: (func, data) => {
     // console.log('ajaxReq data', func, data);
     let form = new FormData();

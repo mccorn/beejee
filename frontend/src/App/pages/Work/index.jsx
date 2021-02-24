@@ -64,11 +64,11 @@ class Work extends DataProvidedPage {
   handleClick2() {
     const {} = this.state;
 
-    this.loadFormData({
+    super.loadFormData({
       sort_field: FIELDS[2],
-      sort_direction: SORT_DIRECTIONS[0],
+      sort_direction: SORT_DIRECTIONS[1],
       page: 2,
-    });
+    })
   }
 
   handleChangePage(val) {
