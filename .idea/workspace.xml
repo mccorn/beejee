@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="500b5fb4-2825-4e24-9b75-81b11c078934" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App/components/Api/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App/components/Api/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App/components/Api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App/components/Api/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App/pages/Work/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App/pages/Work/index.jsx" afterDir="false" />
-    </list>
+    <list default="true" id="500b5fb4-2825-4e24-9b75-81b11c078934" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,18 +43,38 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1614175274452</updated>
-      <workItem from="1614175275519" duration="2849000" />
+      <workItem from="1614175275519" duration="2949000" />
     </task>
+    <task id="LOCAL-00001" summary="doc: ajax fixes!">
+      <created>1614178197182</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1614178197182</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="doc: ajax fixes!" />
+    <option name="LAST_COMMIT_MESSAGE" value="doc: ajax fixes!" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="585" y="90" key="CommitChangelistDialog2" timestamp="1614178195815">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="585" y="90" key="CommitChangelistDialog2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1614178195815" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1614102602861">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1614102602861" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1614178201341">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1614178201341" />
     <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1614102546963">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

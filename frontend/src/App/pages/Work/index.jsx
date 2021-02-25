@@ -30,7 +30,6 @@ class Work extends DataProvidedPage {
     };
 
     this.handleClick = this.handleClick.bind(this);
-    this.handleClick2 = this.handleClick2.bind(this);
     this.loadFormData = this.loadFormData.bind(this);
   }
 
@@ -46,29 +45,10 @@ class Work extends DataProvidedPage {
       sort_direction: SORT_DIRECTIONS[sortDirectionIdx],
       page: pageIdx,
     })
-
-    // Api.getPageData({
-    //   sort_field: FIELDS[sortFieldIdx],
-    //   sort_direction: SORT_DIRECTIONS[sortDirectionIdx],
-    //   page: pageIdx,
-    // }).then((resp) => {
-    //   console.log('Api_getPageData', resp);
-    //   this.setState({pageData:  resp.message});
-    // });
   }
 
   handleClick() {
     this.loadFormData();
-  }
-
-  handleClick2() {
-    const {} = this.state;
-
-    super.loadFormData({
-      sort_field: FIELDS[2],
-      sort_direction: SORT_DIRECTIONS[1],
-      page: 2,
-    })
   }
 
   handleChangePage(val) {
@@ -132,12 +112,6 @@ class Work extends DataProvidedPage {
            <div className="row">
              <div className="btn" onClick={this.handleClick}>
                handleClick
-             </div>
-           </div>
-
-           <div className="row">
-             <div className="btn" onClick={this.handleClick2}>
-               {FIELDS[2]} / {SORT_DIRECTIONS[0]}
              </div>
            </div>
 
