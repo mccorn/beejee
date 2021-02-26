@@ -38,14 +38,19 @@ class Login extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const {status} = this.props;
-    const {token} = this.props;
+    const {error, status} = this.state;
+    const {token = {}} = this.props;
     const prevToken = prevProps.token;
+
+    const {message} = token;
+
+    const passwordError = error?.password;
+    const usernameError = error?.username;
 
     if (token && token.status !== prevToken?.status && token.status === "ok") {
       return history.push('/work')
-    } else {
-      // this.setState({error: token.message, status: token.status});
+    } else if (token && token.status === "error" && (passwordError !== message?.password || message?.username !== usernameError)) {
+      this.setState({error: token.message, status: token.status});
     }
   }
 
@@ -56,12 +61,13 @@ class Login extends Component {
     return <div className="Login bordered Panel">
       <div className="InputWrapper">
         <label>username</label>
-        <input onChange={e => this.setState({username: e.target.value})} value={username} />
+        <input onChange={e => this.setState({username: e.target.value, error: null})} value={username} />
       </div>
       {error?.username && <div className="line Error-Message">* {error?.username}</div>}
       <div className="InputWrapper">
         <label>password</label>
-        <input type="password" onChange={e => this.setState({password: e.target.value})} value={password}/>
+        <input type="password"
+               onChange={e => this.setState({password: e.target.value, error: null})} value={password}/>
 
       </div>
       {error?.password && <div className="line Error-Message">* {error?.password}</div>}
