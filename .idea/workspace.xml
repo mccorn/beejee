@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="500b5fb4-2825-4e24-9b75-81b11c078934" name="Default Changelist" comment="" />
+    <list default="true" id="500b5fb4-2825-4e24-9b75-81b11c078934" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App/components/TasksList/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App/components/TasksList/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App/components/TasksList/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App/components/TasksList/style.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,6 +48,9 @@
       <option name="presentableId" value="Default" />
       <updated>1614175274452</updated>
       <workItem from="1614175275519" duration="2949000" />
+      <workItem from="1614229440472" duration="231000" />
+      <workItem from="1614229697668" duration="40000" />
+      <workItem from="1614319969554" duration="951000" />
     </task>
     <task id="LOCAL-00001" summary="doc: ajax fixes!">
       <created>1614178197182</created>
@@ -52,7 +59,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614178197182</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="doc: clear">
+      <created>1614229658658</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1614229658658</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -60,28 +74,37 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="doc: ajax fixes!" />
-    <option name="LAST_COMMIT_MESSAGE" value="doc: ajax fixes!" />
+    <MESSAGE value="doc: clear" />
+    <option name="LAST_COMMIT_MESSAGE" value="doc: clear" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="585" y="90" key="CommitChangelistDialog2" timestamp="1614178195815">
+    <state x="585" y="90" key="CommitChangelistDialog2" timestamp="1614229657260">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="90" key="CommitChangelistDialog2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1614178195815" />
+    <state x="585" y="90" key="CommitChangelistDialog2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1614229657260" />
+    <state x="184" y="86" key="DiffContextDialog" timestamp="1614320823280">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="86" key="DiffContextDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1614320823280" />
+    <state x="749" y="222" key="RollbackChangesDialog" timestamp="1614320824212">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="749" y="222" key="RollbackChangesDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1614320824212" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1614102602861">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1614102602861" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1614178201341">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1614229662284">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1614178201341" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1614229662284" />
     <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1614102546963">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1614102546963" />
-    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1614176413786">
+    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1614320239411">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="667" y="253" width="585" height="534" key="find.popup/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1614176413786" />
+    <state x="667" y="253" width="585" height="534" key="find.popup/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1614320239411" />
   </component>
 </project>

@@ -1,46 +1,46 @@
 .TasksList {
-    display: grid;
-    max-width: 800px;
-    min-width: 400px;
-    margin: 0 auto;
+  display: grid;
+  max-width: 800px;
+  min-width: 400px;
+  margin: 0 auto;
 }
 
 .TasksList-Body {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .TasksList > .Task:nth-child(odd) {
-    background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .Points {
-    display: flex;
-    flex-wrap: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .Point {
-    display: none;
+  display: none;
 
-    width: 30px;
-    height: 30px;
-    background-color: aquamarine;
+  width: 30px;
+  height: 30px;
+  background-color: aquamarine;
 
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .Point.current {
-    pointer-events: none;
-    background-color: antiquewhite;
+  pointer-events: none;
+  background-color: antiquewhite;
 }
 
 .Point:first-child,
 .Point.current,
 .Point.isNear,
 .Point:last-child {
-    display: flex;
+  display: flex;
 }
 
 .Point:not(:last-child) {
-    margin-right: 10px;
+  margin-right: 10px;
 }

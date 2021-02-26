@@ -10,6 +10,13 @@ export default class TasksList extends Component {
       currentPageIdx: props.currentPageIdx,
     }
   }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.state.currentPageIdx !== this.props.currentPageIdx) {
+      this.setState({currentPageIdx: this.props.currentPageIdx})
+    }
+  }
+
   render() {
     const {data, headings, length, onChangePage} = this.props;
     const {currentPageIdx} = this.state
@@ -20,9 +27,9 @@ export default class TasksList extends Component {
 
     let points = [];
     for (let i = 0; i < Math.ceil(length / 3); i++) {
-      const isNear = currentPageIdx <= i + 2 && currentPageIdx >= i - 2;
-      points.push(<div key={i} className={`Point ${currentPageIdx === i ? 'current' : 'clickable'} ${isNear && 'isNear'}`} onClick={() => onChangePage(i)}>
-        {i}
+      const isNear = currentPageIdx <= i + 2 && currentPageIdx >= i;
+      points.push(<div key={i} className={`Point ${currentPageIdx === i + 1 ? 'current' : 'clickable'} ${isNear && 'isNear'}`} onClick={() => onChangePage(i + 1)}>
+        {i + 1}
       </div>);
     }
 
