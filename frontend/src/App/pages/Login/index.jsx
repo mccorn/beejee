@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import './style.css';
 import Api from "../../components/Api";
 import history from "../../../history";
+import {pageData, token} from "../../../redux/actions";
+import {connect} from "react-redux";
+import {Redirect} from "react-router";
 
 const CLEAR_STATE = {
   username: "",
@@ -9,7 +12,7 @@ const CLEAR_STATE = {
   error: null,
 };
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
@@ -23,25 +26,32 @@ export default class Login extends Component {
   handleLogin() {
     const {username, password} = this.state;
 
-    Api.login({
+    const promise = Api.login({
       username,
       password,
-    }).then((resp) => {
-      if (resp.status === "ok") {
-        console.log('handleLogin_s', resp);
-        this.setState({...CLEAR_STATE, error: {}})
-        history.push("/work");
-      } else {
-        console.log('handleLogin_f', resp)
-        this.setState({error: resp.message})
-      }
+    })
 
-    });
+    promise.then(
+      (data) => token(data),
+      () => console.error(new Error('Ошибка загрузки данных')),
+    );
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const {status} = this.props;
+    const {token} = this.props;
+    const prevToken = prevProps.token;
+
+    if (token && token.status !== prevToken?.status && token.status === "ok") {
+      return history.push('/work')
+    } else {
+      // this.setState({error: token.message, status: token.status});
+    }
   }
 
   render() {
     const {username, password, error} = this.state;
-    // console.log('Login', this.state);
+    console.log('Login', this.props);
 
     return <div className="Login bordered Panel">
       <div className="InputWrapper">
@@ -64,3 +74,13 @@ export default class Login extends Component {
     </div>;
   }
 }
+
+
+function mapStateToProps(state) {
+  console.log('Login state', state)
+  return {
+    token: state.token,
+  };
+}
+
+export default connect(mapStateToProps)(Login);

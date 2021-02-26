@@ -22,8 +22,8 @@ function tasks(state = {  }, action) {
 }
 
 function token(state = null, action) {
-  if (action.type === actions.LOGIN) {
-    return action.payload.data.token || state;
+  if (action.type === actions.GET_TOKEN) {
+    return { ...state, ...action.payload.token } || state;
   }
   return state;
 }

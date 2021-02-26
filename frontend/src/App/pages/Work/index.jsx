@@ -25,7 +25,7 @@ class Work extends DataProvidedPage {
     this.state = {
       sortFieldIdx: 0,
       sortDirectionIdx: 0,
-      pageIdx: 0,
+      pageIdx: 1,
       token: null,
     };
 
@@ -64,7 +64,7 @@ class Work extends DataProvidedPage {
     const fieldName = FIELDS[sortFieldIdx];
     const dirName = SORT_DIRECTIONS[sortDirectionIdx];
 
-    console.log('Work', total_task_count, tasks);
+    console.log('Work', this.props, this.state);
 
     const headings = <div className="Task Task_head">
       <div className={`Task-Cell ${fieldName === "username" && "current"} ${fieldName === "username" && dirName} clickable`}
@@ -91,7 +91,7 @@ class Work extends DataProvidedPage {
     return (
       <div className="Layout">
         <div className="row Token" alt={token}>
-          token: {token || "Не авторизован"}
+          token: {this.props.token?.message?.token || "Не авторизован"}
         </div>
         <div className="row TaskCounter" alt={token}>
           total_task_count: {+total_task_count}
@@ -134,6 +134,7 @@ function mapStateToProps(state) {
   return {
     tasks: state.tasks,
     total_task_count: state.total_task_count,
+    token: state.token,
   };
 }
 

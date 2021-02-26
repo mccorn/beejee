@@ -25,7 +25,7 @@ class App extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-
+    console.log('App', prevProps.token, this.props.token)
   }
 
   render() {
@@ -45,7 +45,7 @@ class App extends PureComponent {
 
 function mapStateToProps(state) {
   return {
-
+    token: state.token,
   };
 }
 
