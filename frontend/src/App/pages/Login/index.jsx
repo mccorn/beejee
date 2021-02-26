@@ -39,10 +39,10 @@ class Login extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     const {error, status} = this.state;
-    const {token = {}} = this.props;
+    const {token} = this.props;
     const prevToken = prevProps.token;
 
-    const {message} = token;
+    let message = token?.message || {};
 
     const passwordError = error?.password;
     const usernameError = error?.username;
@@ -56,7 +56,7 @@ class Login extends Component {
 
   render() {
     const {username, password, error} = this.state;
-    console.log('Login', this.props);
+    // console.log('Login', this.props);
 
     return <div className="Login bordered Panel">
       <div className="InputWrapper">

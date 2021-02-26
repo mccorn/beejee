@@ -31,6 +31,7 @@ class Work extends DataProvidedPage {
 
     this.handleClick = this.handleClick.bind(this);
     this.loadFormData = this.loadFormData.bind(this);
+    this.handleSortChange = this.handleSortChange.bind(this);
   }
 
   componentDidMount(path) {
@@ -52,7 +53,17 @@ class Work extends DataProvidedPage {
   }
 
   handleChangePage(val) {
-    this.setState({pageIdx: val}, this.handleClick);
+    this.setState({pageIdx: val}, this.loadFormData);
+  }
+
+  handleSortChange(fieldIdx) {
+    const {sortFieldIdx, sortDirectionIdx} = this.state;
+
+    if (sortFieldIdx === fieldIdx) {
+      this.setState({sortDirectionIdx: +!sortDirectionIdx}, this.loadFormData)
+    } else {
+      this.setState({sortFieldIdx: fieldIdx}, this.loadFormData)
+    }
   }
 
   render() {
@@ -68,12 +79,12 @@ class Work extends DataProvidedPage {
 
     const headings = <div className="Task Task_head">
       <div className={`Task-Cell ${fieldName === "username" && "current"} ${fieldName === "username" && dirName} clickable`}
-           onClick={() => fieldName === "username" ? this.setState({sortDirectionIdx: +!sortDirectionIdx}) : this.setState({sortFieldIdx: 1})}
+           onClick={() => this.handleSortChange(1)}
       >
         username
       </div>
       <div className={`Task-Cell ${fieldName === "email" && "current"} ${fieldName === "email" && dirName} clickable`}
-           onClick={() => fieldName === "email" ? this.setState({sortDirectionIdx: +!sortDirectionIdx}) : this.setState({sortFieldIdx: 2})}
+           onClick={() => this.handleSortChange(2)}
       >
         email
       </div>
@@ -82,7 +93,7 @@ class Work extends DataProvidedPage {
         text
       </div>
       <div className={`Task-Cell ${fieldName === "status" && "current"} ${fieldName === "status" && dirName} clickable`}
-           onClick={() => fieldName === "status" ? this.setState({sortDirectionIdx: +!sortDirectionIdx}) : this.setState({sortFieldIdx: 3})}
+           onClick={() => this.handleSortChange(3)}
       >
         status
       </div>
@@ -90,10 +101,10 @@ class Work extends DataProvidedPage {
 
     return (
       <div className="Layout">
-        <div className="row Token" alt={token}>
+        <div className="row Token">
           token: {this.props.token?.message?.token || "Не авторизован"}
         </div>
-        <div className="row TaskCounter" alt={token}>
+        <div className="row TaskCounter">
           total_task_count: {+total_task_count}
         </div>
         <div className="Work-Content bordered">

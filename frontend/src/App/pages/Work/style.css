@@ -19,13 +19,13 @@
 
 .Task-Cell.asc::before {
     position: absolute;
-    content: "\2BC5";
+    content: "\2BC6";
     right: 5px;
 }
 
 .Task-Cell.desc::after {
     position: absolute;
-    content: "\2BC6";
+    content: "\2BC5";
     right: 5px;
 }
 
