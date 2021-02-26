@@ -2,22 +2,17 @@ import React, {Component} from 'react';
 import './style.css';
 import Api from "../../components/Api";
 import history from "../../../history";
-import {pageData, token} from "../../../redux/actions";
+import {token} from "../../../redux/actions";
 import {connect} from "react-redux";
-import {Redirect} from "react-router";
-
-const CLEAR_STATE = {
-  username: "",
-  password: "",
-  error: null,
-};
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      ...CLEAR_STATE,
+      username: "",
+      password: "",
+      error: null,
     };
 
     this.handleLogin = this.handleLogin.bind(this);

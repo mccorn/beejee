@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="500b5fb4-2825-4e24-9b75-81b11c078934" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App/pages/Login/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App/pages/Login/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App/pages/Work/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App/pages/Work/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App/pages/Work/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App/pages/Work/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +48,7 @@
       <workItem from="1614175275519" duration="2949000" />
       <workItem from="1614229440472" duration="231000" />
       <workItem from="1614229697668" duration="40000" />
-      <workItem from="1614319969554" duration="5513000" />
+      <workItem from="1614319969554" duration="5592000" />
     </task>
     <task id="LOCAL-00001" summary="doc: ajax fixes!">
       <created>1614178197182</created>
@@ -88,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614324503975</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fix: sorting">
+      <created>1614325532470</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1614325532470</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,13 +102,14 @@
     <MESSAGE value="doc: ajax fixes!" />
     <MESSAGE value="doc: clear" />
     <MESSAGE value="doc: login" />
-    <option name="LAST_COMMIT_MESSAGE" value="doc: login" />
+    <MESSAGE value="fix: sorting" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: sorting" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="585" y="90" key="CommitChangelistDialog2" timestamp="1614324503103">
+    <state x="585" y="90" key="CommitChangelistDialog2" timestamp="1614325531362">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="90" key="CommitChangelistDialog2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1614324503103" />
+    <state x="585" y="90" key="CommitChangelistDialog2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1614325531362" />
     <state x="184" y="86" key="DiffContextDialog" timestamp="1614320823280">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
