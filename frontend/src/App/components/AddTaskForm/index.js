@@ -23,6 +23,7 @@ export default class AddTaskForm extends Component {
 
   handleAddTask() {
     const {username, email, text} = this.state;
+    const {onAddTask} = this.props;
 
     Api.create({
       username,
@@ -31,6 +32,7 @@ export default class AddTaskForm extends Component {
     }).then((resp) => {
       if (resp.status === "ok") {
         this.setState({...CLEAR_STATE, error: {}})
+        if (onAddTask) onAddTask();
       } else {
         this.setState({error: resp.message})
       }

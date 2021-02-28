@@ -62,7 +62,7 @@ class Work extends DataProvidedPage {
   }
 
   render() {
-    const { token, pageIdx, sortFieldIdx, sortDirectionIdx} = this.state;
+    const { token, pageIdx, sortFieldIdx, sortDirectionIdx,} = this.state;
     const { tasks, total_task_count } = this.props;
 
     const fieldName = FIELDS[sortFieldIdx];
@@ -95,6 +95,9 @@ class Work extends DataProvidedPage {
         <div className="row Token" alt={token}>
           login: {this.props.token?.message?.token ? "Администратор" : "Не авторизован"}
         </div>
+        <div className="row Token" alt={token}>
+          Кол-во задач: {Number(this.props.total_task_count)}
+        </div>
         <div className="Work-Content bordered">
           {tasks &&
           <TasksList data={tasks}
@@ -116,7 +119,7 @@ class Work extends DataProvidedPage {
            </div>
          </div>
 
-          <AddTaskForm />
+          <AddTaskForm onAddTask={() => this.loadFormData()} />
         </div>
       </div>
     );
