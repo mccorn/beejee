@@ -29,7 +29,6 @@ class Work extends DataProvidedPage {
       token: null,
     };
 
-    this.handleClick = this.handleClick.bind(this);
     this.loadFormData = this.loadFormData.bind(this);
     this.handleChangeSort = this.handleChangeSort.bind(this);
   }
@@ -48,12 +47,8 @@ class Work extends DataProvidedPage {
     })
   }
 
-  handleClick() {
-    this.loadFormData();
-  }
-
   handleChangePage(val) {
-    this.setState({pageIdx: val}, this.handleClick);
+    this.setState({pageIdx: val}, () => this.loadFormData());
   }
 
   handleChangeSort(idx) {
@@ -98,10 +93,7 @@ class Work extends DataProvidedPage {
     return (
       <div className="Layout">
         <div className="row Token" alt={token}>
-          token: {this.props.token?.message?.token || "Не авторизован"}
-        </div>
-        <div className="row TaskCounter" alt={token}>
-          total_task_count: {+total_task_count}
+          login: {this.props.token?.message?.token ? "Администратор" : "Не авторизован"}
         </div>
         <div className="Work-Content bordered">
           {tasks &&
@@ -110,6 +102,7 @@ class Work extends DataProvidedPage {
                      headings={headings}
                      currentPageIdx={pageIdx}
                      onChangePage={val => this.handleChangePage(val)}
+                     key={total_task_count}
           />
           }
         </div>
@@ -117,14 +110,8 @@ class Work extends DataProvidedPage {
         <div className="Work-Footer bordered Panel">
          <div className="Work-Actions">
            <div className="row">
-             <div className="btn" onClick={this.handleClick}>
-               handleClick
-             </div>
-           </div>
-
-           <div className="row">
              <div className="btn" onClick={() => history.push('/login')}>
-               login
+               Авторизация &#8594;
              </div>
            </div>
          </div>

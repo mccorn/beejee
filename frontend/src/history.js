@@ -2,7 +2,7 @@ import { createBrowserHistory } from 'history';
 
 export const BASE_URL = "app";
 export const BASE_URL_REQ = "https://uxcandy.com/~shapoval/test-task-backend/v2";
-export const USER = "mccorn";
+export const USER = "mccorn13";
 
 const history = createBrowserHistory({ basename: BASE_URL });
 

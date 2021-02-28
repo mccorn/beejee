@@ -36,7 +36,7 @@ const ApiInt = {
     return new Promise((resolve, reject) => {
       $.ajax({
         type: 'POST',
-        developer: 'mccorn',
+        developer: USER,
 
         data: form,
         url: `${BASE_URL_REQ}/${func}?developer=${USER}`,
@@ -66,7 +66,7 @@ const ApiInt = {
     return new Promise((resolve, reject) => {
       $.ajax({
         type: 'POST',
-        developer: 'mccorn',
+        developer: USER,
 
         data: form,
         url: `${BASE_URL_REQ}/${func}/${data.id}?developer=${USER}`,
@@ -95,7 +95,7 @@ const ApiInt = {
     return new Promise((resolve, reject) => {
       $.ajax({
         type: 'GET',
-        developer: 'mccorn',
+        developer: USER,
 
         url: `${BASE_URL_REQ}/${func}?developer=${USER}`,
         crossDomain: true,
