@@ -33,7 +33,7 @@ class Login extends Component {
 
     promise.then(
       (data) => token(data),
-      () => console.error(new Error('Ошибка загрузки данных')),
+      () => console.error(new Error('Ошибка загрузки данных!')),
     );
   }
 
