@@ -31,7 +31,7 @@ const ApiInt = {
     });
   },
   ajaxReq: (func, data) => {
-    // console.log('ajaxReq data', func, data);
+    console.log('ajaxReq data', func, data);
     let form = new FormData();
     Object.keys(data).forEach((id) => {
       form.append(id, data[id]);
@@ -44,6 +44,40 @@ const ApiInt = {
 
         data: form,
         url: `${BASE_URL_REQ}/${func}?developer=${USER}`,
+        crossDomain: true,
+        method: 'POST',
+        mimeType: "multipart/form-data",
+        contentType: false,
+        processData: false,
+        dataType: "json",
+      })
+        .done((resp) => {
+          if (resp.status === "ok") {
+            console.warn('done_resolve', resp);
+            resolve(resp);
+          } else {
+            console.warn('done_reject', resp);
+            resolve(resp);
+          }
+        })
+    });
+  },
+  ajaxReqEdit: (func, data) => {
+
+    let form = new FormData();
+    Object.keys(data).forEach((id) => {
+      form.append(id, data[id]);
+    });
+
+    console.log('ajaxReqEdit data', func, data, form);
+
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        type: 'POST',
+        developer: 'mccorn',
+
+        data: form,
+        url: `${BASE_URL_REQ}/${func}/${data.id}?developer=${USER}`,
         crossDomain: true,
         method: 'POST',
         mimeType: "multipart/form-data",
