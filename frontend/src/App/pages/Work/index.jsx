@@ -27,6 +27,8 @@ class Work extends DataProvidedPage {
       sortDirectionIdx: 0,
       pageIdx: 1,
       token: null,
+
+      message: null,
     };
 
     this.loadFormData = this.loadFormData.bind(this);
@@ -61,8 +63,20 @@ class Work extends DataProvidedPage {
     }
   }
 
+  showMessage() {
+    this.message.classList.remove("hidden");
+    this.setState({message: "Задача добавлена."});
+
+    this.messageTimer = setInterval(() => {
+      this.message.classList.add("hidden");
+      this.setState({message: null});
+
+      clearTimeout(this.messageTimer);
+    }, 2000);
+  }
+
   render() {
-    const { token, pageIdx, sortFieldIdx, sortDirectionIdx,} = this.state;
+    const { token, pageIdx, sortFieldIdx, sortDirectionIdx, message} = this.state;
     const { tasks, total_task_count } = this.props;
 
     const fieldName = FIELDS[sortFieldIdx];
@@ -92,6 +106,11 @@ class Work extends DataProvidedPage {
 
     return (
       <div className="Layout">
+        <div className="Layout-Message hidden" ref={node => this.message = node}>
+          <span>
+            {message}
+          </span>
+        </div>
         <div className="row Token" alt={token}>
           login: {this.props.token?.message?.token ? "Администратор" : "Не авторизован"}
         </div>
@@ -119,7 +138,10 @@ class Work extends DataProvidedPage {
            </div>
          </div>
 
-          <AddTaskForm onAddTask={() => this.loadFormData()} />
+          <AddTaskForm onAddTask={() => {
+            this.showMessage();
+            this.loadFormData();
+          }} />
         </div>
       </div>
     );
