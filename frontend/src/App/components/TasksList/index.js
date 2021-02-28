@@ -21,8 +21,6 @@ export default class TasksList extends Component {
     const {data, headings, length, onChangePage} = this.props;
     const {currentPageIdx} = this.state
 
-    // console.log('TasksList', this.props);
-
     if (!data || !data.length) return null;
 
     let points = [];
@@ -37,7 +35,7 @@ export default class TasksList extends Component {
       <div className="TasksList-Body">
         {headings}
         {
-          data?.map((task, idx) => <Task data={task} key={idx}/>)
+          data?.map((task, idx) => <Task data={task} key={task.id}/>)
         }
       </div>
 

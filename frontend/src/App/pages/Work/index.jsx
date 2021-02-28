@@ -31,6 +31,7 @@ class Work extends DataProvidedPage {
 
     this.handleClick = this.handleClick.bind(this);
     this.loadFormData = this.loadFormData.bind(this);
+    this.handleChangeSort = this.handleChangeSort.bind(this);
   }
 
   componentDidMount(path) {
@@ -55,25 +56,31 @@ class Work extends DataProvidedPage {
     this.setState({pageIdx: val}, this.handleClick);
   }
 
+  handleChangeSort(idx) {
+    const { sortFieldIdx, sortDirectionIdx} = this.state;
+
+    if (idx === sortFieldIdx) {
+      this.setState({sortDirectionIdx: +!sortDirectionIdx}, () => this.loadFormData())
+    } else {
+      this.setState({sortFieldIdx: idx}, () => this.loadFormData())
+    }
+  }
+
   render() {
     const { token, pageIdx, sortFieldIdx, sortDirectionIdx} = this.state;
     const { tasks, total_task_count } = this.props;
 
-    // console.log('pageData', this, pageData, pageData?.tasks?.length);
-
     const fieldName = FIELDS[sortFieldIdx];
     const dirName = SORT_DIRECTIONS[sortDirectionIdx];
 
-    console.log('Work', this.props, this.state);
-
     const headings = <div className="Task Task_head">
       <div className={`Task-Cell ${fieldName === "username" && "current"} ${fieldName === "username" && dirName} clickable`}
-           onClick={() => fieldName === "username" ? this.setState({sortDirectionIdx: +!sortDirectionIdx}) : this.setState({sortFieldIdx: 1})}
+           onClick={() => this.handleChangeSort(1)}
       >
         username
       </div>
       <div className={`Task-Cell ${fieldName === "email" && "current"} ${fieldName === "email" && dirName} clickable`}
-           onClick={() => fieldName === "email" ? this.setState({sortDirectionIdx: +!sortDirectionIdx}) : this.setState({sortFieldIdx: 2})}
+           onClick={() => this.handleChangeSort(2)}
       >
         email
       </div>
@@ -82,7 +89,7 @@ class Work extends DataProvidedPage {
         text
       </div>
       <div className={`Task-Cell ${fieldName === "status" && "current"} ${fieldName === "status" && dirName} clickable`}
-           onClick={() => fieldName === "status" ? this.setState({sortDirectionIdx: +!sortDirectionIdx}) : this.setState({sortFieldIdx: 3})}
+           onClick={() => this.handleChangeSort(3)}
       >
         status
       </div>
@@ -130,7 +137,6 @@ class Work extends DataProvidedPage {
 }
 
 function mapStateToProps(state) {
-  console.log('state', state)
   return {
     tasks: state.tasks,
     total_task_count: state.total_task_count,

@@ -38,20 +38,16 @@ class Login extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const {status} = this.props;
     const {token} = this.props;
     const prevToken = prevProps.token;
 
     if (token && token.status !== prevToken?.status && token.status === "ok") {
       return history.push('/work')
-    } else {
-      // this.setState({error: token.message, status: token.status});
     }
   }
 
   render() {
     const {username, password, error} = this.state;
-    console.log('Login', this.props);
 
     return <div className="Login bordered Panel">
       <div className="InputWrapper">
@@ -77,7 +73,6 @@ class Login extends Component {
 
 
 function mapStateToProps(state) {
-  console.log('Login state', state)
   return {
     token: state.token,
   };

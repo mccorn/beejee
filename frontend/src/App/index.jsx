@@ -8,19 +8,6 @@ import Work from "./pages/Work";
 import Login from "./pages/Login";
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    console.log('App constructor', props);
-    this.state = {
-
-    };
-  }
-
-  componentDidUpdate(prevProps) {
-    console.log('App', prevProps.token, this.props.token)
-  }
-
   render() {
     return (
       <Router history={history}>

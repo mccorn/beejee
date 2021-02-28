@@ -30,19 +30,15 @@ export default class AddTaskForm extends Component {
       text,
     }).then((resp) => {
       if (resp.status === "ok") {
-        console.log('handleAddTask_resp', resp);
         this.setState({...CLEAR_STATE, error: {}})
       } else {
-        console.log('handleAddTask_reject', resp)
         this.setState({error: resp.message})
       }
-
     });
   }
 
   render() {
     const {username, email, text, error} = this.state;
-    // console.log('AddTaskForm', this.state);
 
     return <div className="AddTaskForm bordered Panel">
       <div className="InputWrapper">

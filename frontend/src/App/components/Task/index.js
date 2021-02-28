@@ -20,28 +20,31 @@ class Task extends Component {
     this.handleClickTextField = this.handleClickTextField.bind(this);
     this.handleClickStatusField = this.handleClickStatusField.bind(this);
     this.handleFocusOutField = this.handleFocusOutField.bind(this);
+    this.handleEditTask = this.handleEditTask.bind(this);
   }
 
   handleClickTextField() {
-    const {data, token} = this.props;
+    const {token} = this.props;
     const {editText} = this.state;
 
     if (token) this.setState({editText: !editText})
   }
 
-
   handleClickStatusField() {
-    const {data, token} = this.props;
+    const {token} = this.props;
     const {editStatus} = this.state;
 
     if (token) this.setState({editStatus: !editStatus})
   }
 
   handleFocusOutField() {
+    const {status} = this.state;
+    this.setState({status: status >= 10 ? 11 : 1, editText: false}, () => this.handleEditTask())
+  }
+
+  handleEditTask() {
     const {username, email, text, status} = this.state;
     const {token, data} = this.props;
-
-    console.log('handleFocusOutField');
 
     Api.edit({
       id: data?.id,
@@ -50,19 +53,7 @@ class Task extends Component {
       text,
       status,
       token,
-    }).then((resp) => {
-      // if (resp.status === "ok") {
-      //   console.log('handleFocusOutField', resp);
-      //   this.setState({
-      //     username,
-      //     email,
-      //     text,
-      //     status,
-      //   })
-      // }
-    });
-
-    this.setState({editStatus: false, editText: false})
+    })
   }
 
   render() {
@@ -83,19 +74,22 @@ class Task extends Component {
           : text
         }
       </div>
-      <div onClick={this.handleClickStatusField}>
-        {editStatus
-          ? <input value={status}
-                   autoFocus
-                   onChange={(e) => this.setState({status: e.target.value})}
-                   onBlur={() => this.handleFocusOutField()}
-          />
-          : status
-        }
+      <div className="Task-Status" onClick={this.handleClickStatusField}>
+        <div>
+          {status}
+        </div>
+        {token && (status === 0 || status === 1) && <div className="clickable" onClick={() => this.setState({status: 11}, this.handleEditTask)}>&#10003;</div> }
       </div>
     </div>;
   }
 }
+
+const STATUSES_STRING = {
+  0: "Не выполнено. \n Не редактировано.",
+  1: "Не выполнено. \n Редактировано.",
+  10: "Выполнено. \n Не редактировано.",
+  11: "Выполнено. \n Редактировано.",
+};
 
 function mapStateToProps(state) {
   return {

@@ -6,7 +6,6 @@ import history, {BASE_URL_REQ, USER} from '../../../history';
 const ApiInt = {
   apiIsBusy: false,
   ajaxGet: (func, data) => {
-    // console.log('ajaxReq data', func, data);
     let form = new FormData();
     Object.keys(data).forEach((id) => {
       form.append(id, data[id]);
@@ -21,17 +20,14 @@ const ApiInt = {
         })
         .done((resp) => {
           if (resp.status === "ok") {
-            console.warn('done_resolve', resp);
             resolve(resp);
           } else {
-            console.warn('done_reject', resp);
             resolve(resp);
           }
         })
     });
   },
   ajaxReq: (func, data) => {
-    console.log('ajaxReq data', func, data);
     let form = new FormData();
     Object.keys(data).forEach((id) => {
       form.append(id, data[id]);
@@ -53,10 +49,8 @@ const ApiInt = {
       })
         .done((resp) => {
           if (resp.status === "ok") {
-            console.warn('done_resolve', resp);
             resolve(resp);
           } else {
-            console.warn('done_reject', resp);
             resolve(resp);
           }
         })
@@ -68,8 +62,6 @@ const ApiInt = {
     Object.keys(data).forEach((id) => {
       form.append(id, data[id]);
     });
-
-    console.log('ajaxReqEdit data', func, data, form);
 
     return new Promise((resolve, reject) => {
       $.ajax({
@@ -87,10 +79,8 @@ const ApiInt = {
       })
         .done((resp) => {
           if (resp.status === "ok") {
-            console.warn('done_resolve', resp);
             resolve(resp);
           } else {
-            console.warn('done_reject', resp);
             resolve(resp);
           }
         })
@@ -118,18 +108,12 @@ const ApiInt = {
       })
         .done((resp) => {
           if (resp.status === "ok") {
-            console.log('done_resolve', resp);
             resolve(resp);
           } else {
-            console.log('done_reject', resp);
             resolve(resp);
           }
         })
     });
-  },
-  log: (text) => {
-    const time = new Date();
-    console.log(`[${time.toLocaleTimeString()}.${time.getMilliseconds()}] API: ${text}`);
   },
 };
 
