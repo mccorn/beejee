@@ -76,7 +76,7 @@ class Task extends Component {
       </div>
       <div className="Task-Status" onClick={this.handleClickStatusField}>
         <div>
-          {status}
+          {STATUSES_STRING[status]}
         </div>
         {token && (status === 0 || status === 1) && <div className="clickable" onClick={() => this.setState({status: 11}, this.handleEditTask)}>&#10003;</div> }
       </div>
@@ -86,9 +86,9 @@ class Task extends Component {
 
 const STATUSES_STRING = {
   0: "Не выполнено. \n Не редактировано.",
-  1: "Не выполнено. \n Редактировано.",
+  1: "Не выполнено. \n Отредактировано.",
   10: "Выполнено. \n Не редактировано.",
-  11: "Выполнено. \n Редактировано.",
+  11: "Выполнено. \n Отредактировано.",
 };
 
 function mapStateToProps(state) {
