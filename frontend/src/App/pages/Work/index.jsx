@@ -27,9 +27,10 @@ class Work extends DataProvidedPage {
       sortDirectionIdx: 0,
       pageIdx: 1,
       token: null,
+
+      message: null,
     };
 
-    this.handleClick = this.handleClick.bind(this);
     this.loadFormData = this.loadFormData.bind(this);
     this.handleSortChange = this.handleSortChange.bind(this);
   }
@@ -48,10 +49,6 @@ class Work extends DataProvidedPage {
     })
   }
 
-  handleClick() {
-    this.loadFormData();
-  }
-
   handleChangePage(val) {
     this.setState({pageIdx: val}, this.loadFormData);
   }
@@ -66,16 +63,24 @@ class Work extends DataProvidedPage {
     }
   }
 
-  render() {
-    const { token, pageIdx, sortFieldIdx, sortDirectionIdx} = this.state;
-    const { tasks, total_task_count } = this.props;
+  showMessage() {
+    this.message.classList.remove("hidden");
+    this.setState({message: "Задача добавлена."});
 
-    // console.log('pageData', this, pageData, pageData?.tasks?.length);
+    this.messageTimer = setInterval(() => {
+      this.message.classList.add("hidden");
+      this.setState({message: null});
+
+      clearTimeout(this.messageTimer);
+    }, 2000);
+  }
+
+  render() {
+    const { token, pageIdx, sortFieldIdx, sortDirectionIdx, message} = this.state;
+    const { tasks, total_task_count } = this.props;
 
     const fieldName = FIELDS[sortFieldIdx];
     const dirName = SORT_DIRECTIONS[sortDirectionIdx];
-
-    console.log('Work', this.props, this.state);
 
     const headings = <div className="Task Task_head">
       <div className={`Task-Cell ${fieldName === "username" && "current"} ${fieldName === "username" && dirName} clickable`}
@@ -101,11 +106,16 @@ class Work extends DataProvidedPage {
 
     return (
       <div className="Layout">
-        <div className="row Token">
-          token: {this.props.token?.message?.token || "Не авторизован"}
+        <div className="Layout-Message hidden" ref={node => this.message = node}>
+          <span>
+            {message}
+          </span>
         </div>
-        <div className="row TaskCounter">
-          total_task_count: {+total_task_count}
+        <div className="row Token">
+          login: {this.props.token?.message?.token ? "Администратор" : "Не авторизован"}
+        </div>
+        <div className="row Token">
+          Кол-во задач: {Number(this.props.total_task_count)}
         </div>
         <div className="Work-Content bordered">
           {tasks &&
@@ -114,6 +124,7 @@ class Work extends DataProvidedPage {
                      headings={headings}
                      currentPageIdx={pageIdx}
                      onChangePage={val => this.handleChangePage(val)}
+                     key={total_task_count}
           />
           }
         </div>
@@ -121,19 +132,16 @@ class Work extends DataProvidedPage {
         <div className="Work-Footer bordered Panel">
          <div className="Work-Actions">
            <div className="row">
-             <div className="btn" onClick={this.handleClick}>
-               handleClick
-             </div>
-           </div>
-
-           <div className="row">
              <div className="btn" onClick={() => history.push('/login')}>
-               login
+               Авторизация &#8594;
              </div>
            </div>
          </div>
 
-          <AddTaskForm />
+          <AddTaskForm onAddTask={() => {
+            this.showMessage();
+            this.loadFormData();
+          }} />
         </div>
       </div>
     );
@@ -141,7 +149,6 @@ class Work extends DataProvidedPage {
 }
 
 function mapStateToProps(state) {
-  console.log('state', state)
   return {
     tasks: state.tasks,
     total_task_count: state.total_task_count,

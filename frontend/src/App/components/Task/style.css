@@ -12,3 +12,11 @@
 .Task > div:nth-child(odd) {
     background-color: rgba(0, 0, 0, 0.2);
 }
+
+.Task-Status {
+    display: flex;
+}
+
+.Task-Status > *:first-child {
+    flex: 1;
+}

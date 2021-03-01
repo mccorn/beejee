@@ -28,7 +28,7 @@ class Login extends Component {
 
     promise.then(
       (data) => token(data),
-      () => console.error(new Error('Ошибка загрузки данных')),
+      () => console.error(new Error('Ошибка загрузки данных!')),
     );
   }
 
@@ -51,7 +51,6 @@ class Login extends Component {
 
   render() {
     const {username, password, error} = this.state;
-    // console.log('Login', this.props);
 
     return <div className="Login bordered Panel">
       <div className="InputWrapper">
@@ -78,7 +77,6 @@ class Login extends Component {
 
 
 function mapStateToProps(state) {
-  console.log('Login state', state)
   return {
     token: state.token,
   };

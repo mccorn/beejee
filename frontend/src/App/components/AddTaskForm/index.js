@@ -23,6 +23,7 @@ export default class AddTaskForm extends Component {
 
   handleAddTask() {
     const {username, email, text} = this.state;
+    const {onAddTask} = this.props;
 
     Api.create({
       username,
@@ -30,19 +31,16 @@ export default class AddTaskForm extends Component {
       text,
     }).then((resp) => {
       if (resp.status === "ok") {
-        console.log('handleAddTask_resp', resp);
         this.setState({...CLEAR_STATE, error: {}})
+        if (onAddTask) onAddTask();
       } else {
-        console.log('handleAddTask_reject', resp)
         this.setState({error: resp.message})
       }
-
     });
   }
 
   render() {
     const {username, email, text, error} = this.state;
-    // console.log('AddTaskForm', this.state);
 
     return <div className="AddTaskForm bordered Panel">
       <div className="InputWrapper">
@@ -65,7 +63,7 @@ export default class AddTaskForm extends Component {
 
       <div className="row">
         <div className="btn" onClick={this.handleAddTask}>
-          handleAddTask
+          + Добавить задачу
         </div>
       </div>
     </div>;
