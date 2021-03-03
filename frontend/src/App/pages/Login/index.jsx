@@ -17,6 +17,7 @@ class Login extends Component {
 
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleKeydown = this.handleKeydown.bind(this);
   }
 
   handleLogin() {
@@ -61,22 +62,44 @@ class Login extends Component {
     }
   }
 
+  handleKeydown(e) {
+    if (e.key === "Enter") {
+      if (this.state.status === "ok") {
+        history.push('/work')
+      } else {
+        this.handleLogin();
+      }
+    }
+  }
+
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleKeydown)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeydown)
+  }
+
   render() {
     const {username, password, error, status} = this.state;
 
     return <div className="Login bordered Panel">
-      <div className="InputWrapper">
-        <label>username</label>
-        <input onChange={e => this.setState({username: e.target.value, error: null})} value={username} />
-      </div>
-      {error?.username && <div className="line Error-Message">* {error?.username}</div>}
-      <div className="InputWrapper">
-        <label>password</label>
-        <input type="password"
-               onChange={e => this.setState({password: e.target.value, error: null})} value={password}/>
+      {status !== "ok" && (
+        <>
+          <div className="InputWrapper">
+            <label>username</label>
+            <input onChange={e => this.setState({username: e.target.value, error: null})} value={username} />
+          </div>
+          {error?.username && <div className="line Error-Message">* {error?.username}</div>}
+          <div className="InputWrapper">
+            <label>password</label>
+            <input type="password"
+                   onChange={e => this.setState({password: e.target.value, error: null})} value={password}/>
 
-      </div>
-      {error?.password && <div className="line Error-Message">* {error?.password}</div>}
+          </div>
+          {error?.password && <div className="line Error-Message">* {error?.password}</div>}
+        </>
+      )}
 
       <div className="Login-ButtonsGrid" >
         {status === "ok"
@@ -91,9 +114,12 @@ class Login extends Component {
             </>
           )
           : (
-            <div className="btn" onClick={this.handleLogin}>
-              login
-            </div>
+            <>
+              <div></div>
+              <div className="btn" onClick={this.handleLogin}>
+                login
+              </div>
+            </>
           )
         }
 

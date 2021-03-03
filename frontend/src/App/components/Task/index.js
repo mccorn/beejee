@@ -27,7 +27,7 @@ class Task extends Component {
     const {token} = this.props;
     const {editText} = this.state;
 
-    if (token) this.setState({editText: !editText})
+    if (token && !editText) this.setState({editText: !editText})
   }
 
   handleClickStatusField() {
@@ -38,20 +38,36 @@ class Task extends Component {
   }
 
   handleFocusOutField() {
-    const {status} = this.state;
-    this.setState({status: status >= 10 ? 11 : 1, editText: false}, () => this.handleEditTask())
+    const {status, text} = this.state;
+    const {data} = this.props;
+
+    this.setState({editText: false});
+
+    if (data.text !== text) {
+      console.log('dd', data.text)
+      console.log('text', text)
+      this.setState({text}, () => this.handleEditTask("text"));
+    }
   }
 
-  handleEditTask() {
+  handleEditTask(fieldName) {
     const {username, email, text, status} = this.state;
     const {token, data} = this.props;
 
-    Api.edit({
+    let newStatus = status;
+
+    if (fieldName === "text") {
+      newStatus = status === 0 ? 1 : 11;
+    } else if (fieldName === "status"){
+      newStatus = status === 0 ? 10 : 11;
+    }
+
+    return Api.edit({
       id: data?.id,
       username,
       email,
       text,
-      status,
+      status: newStatus,
       token,
     })
   }
@@ -69,16 +85,16 @@ class Task extends Component {
           ? <input value={text}
                    autoFocus
                    onChange={(e) => this.setState({text: e.target.value})}
-                   onBlur={() => this.handleFocusOutField()}
+                   onBlur={() => this.handleFocusOutField("text")}
           />
           : text
         }
       </div>
-      <div className="Task-Status" onClick={this.handleClickStatusField}>
+      <div className="Task-Status" onClick={() => this.handleClickStatusField()}>
         <div>
           {STATUSES_STRING[status]}
         </div>
-        {token && (status === 0 || status === 1) && <div className="clickable" onClick={() => this.setState({status: 11}, this.handleEditTask)}>&#10003;</div> }
+        {token && (status === 0 || status === 1) && <div className="clickable" onClick={() => this.handleEditTask("status")}>&#10003;</div> }
       </div>
     </div>;
   }
