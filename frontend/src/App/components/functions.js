@@ -1,5 +1,5 @@
 import Api from "./Api";
-import {addTask, pageData} from '../../redux/actions';
+import {pageData} from '../../redux/actions';
 
 export function loadPageData(data) {
   const promise = Api.getPageData(data);

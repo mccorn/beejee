@@ -11,7 +11,7 @@ class App extends PureComponent {
   render() {
     return (
       <Router history={history}>
-        <Route path="/" exact render={() => <Redirect to="/work" />} />
+        <Route path="/" render={() => <Redirect to="/work" />} />
         <Route path="/work" component={Work} />
         <Route path="/login" component={Login} />
       </Router>

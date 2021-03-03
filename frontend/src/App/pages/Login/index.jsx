@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './style.css';
 import Api from "../../components/Api";
 import history from "../../../history";
-import {token} from "../../../redux/actions";
+import {logoutAction, pageData, token} from "../../../redux/actions";
 import {connect} from "react-redux";
 
 class Login extends Component {
@@ -16,6 +16,7 @@ class Login extends Component {
     };
 
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   handleLogin() {
@@ -24,12 +25,23 @@ class Login extends Component {
     const promise = Api.login({
       username,
       password,
-    })
+    });
 
     promise.then(
-      (data) => token(data),
-      () => console.error(new Error('Ошибка загрузки данных!')),
+      (data) => {
+        token(data);
+        if (data.status === "ok") {
+          this.setState({token: data.message, status: "ok", error: null, username: "", password: ""})
+        } else {
+          this.setState({status: "error", error: data.message})
+        }
+      },
     );
+  }
+
+  handleLogout() {
+    this.setState({token: "", status: "logout", username: "", password: ""});
+    token(null);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -43,14 +55,14 @@ class Login extends Component {
     const usernameError = error?.username;
 
     if (token && token.status !== prevToken?.status && token.status === "ok") {
-      return history.push('/work')
+      this.setState({token: token.message, status: token.status});
     } else if (token && token.status === "error" && (passwordError !== message?.password || message?.username !== usernameError)) {
       this.setState({error: token.message, status: token.status});
     }
   }
 
   render() {
-    const {username, password, error} = this.state;
+    const {username, password, error, status} = this.state;
 
     return <div className="Login bordered Panel">
       <div className="InputWrapper">
@@ -66,10 +78,25 @@ class Login extends Component {
       </div>
       {error?.password && <div className="line Error-Message">* {error?.password}</div>}
 
-      <div className="row">
-        <div className="btn" onClick={this.handleLogin}>
-          login
-        </div>
+      <div className="Login-ButtonsGrid" >
+        {status === "ok"
+          ? (
+            <>
+              <div className="btn" onClick={this.handleLogout}>
+                logout
+              </div>
+              <div className="btn" onClick={() => history.push('/work')}>
+                to work =>
+              </div>
+            </>
+          )
+          : (
+            <div className="btn" onClick={this.handleLogin}>
+              login
+            </div>
+          )
+        }
+
       </div>
     </div>;
   }
