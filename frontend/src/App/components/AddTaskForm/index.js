@@ -30,7 +30,7 @@ export default class AddTaskForm extends Component {
       email,
       text,
     }).then(
-      (resp) => {
+      () => {
         this.setState({...CLEAR_STATE, error: {}});
         if (onAddTask) onAddTask();
       },
