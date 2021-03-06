@@ -141,7 +141,7 @@ class Work extends DataProvidedPage {
          <div className="Work-Actions">
            <div className="row">
              <div className="btn" onClick={() => history.push('/login')}>
-               Авторизация &#8594;
+               login/logout &#8594;
              </div>
            </div>
          </div>

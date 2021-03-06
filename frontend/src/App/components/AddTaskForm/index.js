@@ -63,7 +63,7 @@ export default class AddTaskForm extends Component {
 
       <div className="row">
         <div className="btn" onClick={this.handleAddTask}>
-          + Добавить задачу
+          + Add task
         </div>
       </div>
     </div>;
