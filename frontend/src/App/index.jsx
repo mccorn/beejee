@@ -6,12 +6,20 @@ import './style.css';
 import history from '../history';
 import Work from "./pages/Work";
 import Login from "./pages/Login";
+import {tokenAction} from "../redux/actions";
 
 class App extends PureComponent {
+  componentDidMount() {
+    const token = localStorage.getItem('token')
+    console.log(`token = ${token}`);
+
+    if (localStorage.token) tokenAction(token);
+  }
+
   render() {
     return (
       <Router history={history}>
-        <Route path="/" render={() => <Redirect to="/work" />} />
+        <Route path="/" exact render={() => <Redirect to="/work" />} />
         <Route path="/work" component={Work} />
         <Route path="/login" component={Login} />
       </Router>

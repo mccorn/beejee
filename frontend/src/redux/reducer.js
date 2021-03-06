@@ -23,7 +23,9 @@ function tasks(state = {  }, action) {
 
 function token(state = null, action) {
   if (action.type === actions.GET_TOKEN) {
-    return { ...state, ...action.payload.token } || state;
+    console.log('GET_TOKEN', action.payload);
+    localStorage.setItem('token', action.payload.token);
+    return { ...state, token: action.payload.token } || state;
   }
   return state;
 }

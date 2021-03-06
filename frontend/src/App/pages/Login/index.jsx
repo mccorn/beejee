@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './style.css';
 import Api from "../../components/Api";
 import history from "../../../history";
-import {logoutAction, pageData, token} from "../../../redux/actions";
+import {pageData, tokenAction} from "../../../redux/actions";
 import {connect} from "react-redux";
 
 class Login extends Component {
@@ -30,7 +30,7 @@ class Login extends Component {
 
     promise.then(
       (data) => {
-        token(data);
+        tokenAction(data);
         if (data.status === "ok") {
           this.setState({token: data.message, status: "ok", error: null, username: "", password: ""})
         } else {
@@ -42,7 +42,7 @@ class Login extends Component {
 
   handleLogout() {
     this.setState({token: "", status: "logout", username: "", password: ""});
-    token(null);
+    tokenAction("");
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
