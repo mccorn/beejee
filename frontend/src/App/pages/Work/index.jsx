@@ -25,7 +25,7 @@ class Work extends DataProvidedPage {
       sortFieldIdx: 0,
       sortDirectionIdx: 0,
       pageIdx: 1,
-      token: null,
+      token: props.token,
 
       message: null,
     };
@@ -80,7 +80,7 @@ class Work extends DataProvidedPage {
   }
 
   render() {
-    const { token, pageIdx, sortFieldIdx, sortDirectionIdx, message} = this.state;
+    const { pageIdx, sortFieldIdx, sortDirectionIdx, message} = this.state;
     const { tasks, total_task_count } = this.props;
 
     const fieldName = FIELDS[sortFieldIdx];
