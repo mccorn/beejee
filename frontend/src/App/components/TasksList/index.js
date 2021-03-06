@@ -18,7 +18,7 @@ export default class TasksList extends Component {
   }
 
   render() {
-    const {data, headings, length, onChangePage} = this.props;
+    const {data, headings, length, onChangePage, setDec} = this.props;
     const {currentPageIdx} = this.state
 
     // if (!data || !data.length) return null;
@@ -35,7 +35,7 @@ export default class TasksList extends Component {
       <div className="TasksList-Body">
         {headings}
         {data && !!data.length
-          ? data.map((task, idx) => <Task data={task} key={task.id}/>)
+          ? data.map((task, idx) => <Task data={task} key={task.id} setDec={setDec}/>)
           : "Список пуст"
         }
       </div>

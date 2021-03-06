@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './style.css';
 import {connect} from "react-redux";
 import Api from "../Api";
+import {loadPageData} from "../functions";
 
 class Task extends Component {
   constructor(props) {
@@ -38,21 +39,19 @@ class Task extends Component {
   }
 
   handleFocusOutField() {
-    const {status, text} = this.state;
+    const {text} = this.state;
     const {data} = this.props;
 
     this.setState({editText: false});
 
     if (data.text !== text) {
-      console.log('dd', data.text)
-      console.log('text', text)
       this.setState({text}, () => this.handleEditTask("text"));
     }
   }
 
   handleEditTask(fieldName) {
-    const {username, email, text, status} = this.state;
-    const {token, data} = this.props;
+    const {token, data, setDec} = this.props;
+    const {username, email, text, status} = data;
 
     let newStatus = status;
 
@@ -66,23 +65,24 @@ class Task extends Component {
       id: data?.id,
       username,
       email,
-      text,
+      text: fieldName === "text" ? this.state.text : text,
       status: newStatus,
       token,
-    })
+    }).then(() => setDec())
   }
 
   render() {
     const {data, token} = this.props;
 
-    const {editText, editStatus, username, email, text, status} = this.state;
+    const {editText, editStatus} = this.state;
+    const {username, email, text, status} = data;
 
     return <div className="Task">
       <div>{username}</div>
       <div>{email}</div>
       <div onClick={this.handleClickTextField}>
         {editText
-          ? <input value={text}
+          ? <input value={this.state.text}
                    autoFocus
                    onChange={(e) => this.setState({text: e.target.value})}
                    onBlur={() => this.handleFocusOutField("text")}
@@ -109,7 +109,7 @@ const STATUSES_STRING = {
 
 function mapStateToProps(state) {
   return {
-    token: state.token?.message?.token,
+    token: state.token,
   };
 }
 

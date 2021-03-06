@@ -32,6 +32,7 @@ class Work extends DataProvidedPage {
 
     this.loadFormData = this.loadFormData.bind(this);
     this.handleSortChange = this.handleSortChange.bind(this);
+    this.setDec = this.setDec.bind(this);
   }
 
   componentDidMount(path) {
@@ -74,6 +75,10 @@ class Work extends DataProvidedPage {
     }, 2000);
   }
 
+  setDec() {
+    this.loadFormData();
+  }
+
   render() {
     const { token, pageIdx, sortFieldIdx, sortDirectionIdx, message} = this.state;
     const { tasks, total_task_count } = this.props;
@@ -113,6 +118,9 @@ class Work extends DataProvidedPage {
         <div className="row Token">
           login: {this.props.token ? "Администратор" : "Не авторизован"}
         </div>
+        <div className="row">
+          token: {this.props.token}
+        </div>
         <div className="row Token">
           Кол-во задач: {Number(this.props.total_task_count)}
         </div>
@@ -124,6 +132,7 @@ class Work extends DataProvidedPage {
                      currentPageIdx={pageIdx}
                      onChangePage={val => this.handleChangePage(val)}
                      key={total_task_count}
+                     setDec={this.setDec}
           />
           }
         </div>
