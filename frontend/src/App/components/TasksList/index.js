@@ -34,7 +34,7 @@ export default class TasksList extends Component {
         {headings}
         {data && !!data.length
           ? data.map((task, idx) => <Task data={task} key={task.id} setDec={setDec}/>)
-          : "Список пуст"
+          : "Empty list"
         }
       </div>
 
