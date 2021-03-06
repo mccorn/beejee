@@ -118,11 +118,8 @@ class Work extends DataProvidedPage {
         <div className="row Token">
           login: {this.props.token ? "Администратор" : "Не авторизован"}
         </div>
-        <div className="row">
-          token: {this.props.token}
-        </div>
         <div className="row Token">
-          Кол-во задач: {Number(this.props.total_task_count)}
+          tasks: {Number(this.props.total_task_count)}
         </div>
         <div className="Work-Content bordered">
           {tasks &&
