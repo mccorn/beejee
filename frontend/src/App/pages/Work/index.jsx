@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './style.css';
-import Api from "../../components/Api";
 import TasksList from "../../components/TasksList";
 import DataProvidedPage from "../../components/DataProvidedPage";
 import AddTaskForm from "../../components/AddTaskForm";
@@ -112,7 +111,7 @@ class Work extends DataProvidedPage {
           </span>
         </div>
         <div className="row Token">
-          login: {this.props.token?.message?.token ? "Администратор" : "Не авторизован"}
+          login: {this.props.token ? "Администратор" : "Не авторизован"}
         </div>
         <div className="row Token">
           Кол-во задач: {Number(this.props.total_task_count)}

@@ -11,8 +11,6 @@ import {tokenAction} from "../redux/actions";
 class App extends PureComponent {
   componentDidMount() {
     const token = localStorage.getItem('token')
-    console.log(`token = ${token}`);
-
     if (localStorage.token) tokenAction(token);
   }
 

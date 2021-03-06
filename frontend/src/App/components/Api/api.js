@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import $ from 'jquery';
-// import { apiBegin, apiEnd, apiError } from '../../../redux/actions';
-import history, {BASE_URL_REQ, USER} from '../../../history';
+import {BASE_URL_REQ, USER} from '../../../history';
 
 const ApiInt = {
   apiIsBusy: false,
@@ -49,9 +48,9 @@ const ApiInt = {
       })
         .done((resp) => {
           if (resp.status === "ok") {
-            resolve(resp);
+            resolve(resp.message.token);
           } else {
-            resolve(resp);
+            reject(resp.message);
           }
         })
     });

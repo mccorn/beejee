@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './style.css';
 import Api from "../../components/Api";
 import history from "../../../history";
-import {pageData, tokenAction} from "../../../redux/actions";
+import {tokenAction} from "../../../redux/actions";
 import {connect} from "react-redux";
 
 class Login extends Component {
@@ -12,7 +12,9 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      error: null,
+      error: props.error,
+      token: props.token,
+      status: props.token ? "ok" : (props.error ? "error" : null),
     };
 
     this.handleLogin = this.handleLogin.bind(this);
@@ -29,14 +31,8 @@ class Login extends Component {
     });
 
     promise.then(
-      (data) => {
-        tokenAction(data);
-        if (data.status === "ok") {
-          this.setState({token: data.message, status: "ok", error: null, username: "", password: ""})
-        } else {
-          this.setState({status: "error", error: data.message})
-        }
-      },
+      (data) => tokenAction(data),
+      (data) => this.setState({status: "error", error: data})
     );
   }
 
@@ -46,19 +42,11 @@ class Login extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const {error, status} = this.state;
     const {token} = this.props;
     const prevToken = prevProps.token;
 
-    let message = token?.message || {};
-
-    const passwordError = error?.password;
-    const usernameError = error?.username;
-
-    if (token && token.status !== prevToken?.status && token.status === "ok") {
-      this.setState({token: token.message, status: token.status});
-    } else if (token && token.status === "error" && (passwordError !== message?.password || message?.username !== usernameError)) {
-      this.setState({error: token.message, status: token.status});
+    if (token && token !== prevToken) {
+      this.setState({token: token, status: "ok"});
     }
   }
 
@@ -122,7 +110,6 @@ class Login extends Component {
             </>
           )
         }
-
       </div>
     </div>;
   }
