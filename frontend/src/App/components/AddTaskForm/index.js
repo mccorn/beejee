@@ -29,14 +29,15 @@ export default class AddTaskForm extends Component {
       username,
       email,
       text,
-    }).then((resp) => {
-      if (resp.status === "ok") {
-        this.setState({...CLEAR_STATE, error: {}})
+    }).then(
+      (resp) => {
+        this.setState({...CLEAR_STATE, error: {}});
         if (onAddTask) onAddTask();
-      } else {
-        this.setState({error: resp.message})
+      },
+      (resp) => {
+        this.setState({error: resp})
       }
-    });
+    );
   }
 
   render() {
@@ -61,7 +62,7 @@ export default class AddTaskForm extends Component {
       </div>
       {error?.text && <div className="line Error-Message">* {error?.text}</div>}
 
-      <div className="row">
+      <div className="row" style={{justifyContent: "flex-end"}}>
         <div className="btn" onClick={this.handleAddTask}>
           + Add task
         </div>

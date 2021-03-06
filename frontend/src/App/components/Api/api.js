@@ -107,9 +107,9 @@ const ApiInt = {
       })
         .done((resp) => {
           if (resp.status === "ok") {
-            resolve(resp);
+            resolve(resp.message);
           } else {
-            resolve(resp);
+            reject(resp.message);
           }
         })
     });

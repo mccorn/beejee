@@ -103,7 +103,6 @@ class Login extends Component {
           )
           : (
             <>
-              <div></div>
               <div className="btn" onClick={this.handleLogin}>
                 login
               </div>

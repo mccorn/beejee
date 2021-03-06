@@ -4,7 +4,11 @@
 }
 
 .Login-ButtonsGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: flex-end;
     grid-gap: 20px;
+}
+
+.Login-ButtonsGrid > .btn{
+    width: 100%;
 }

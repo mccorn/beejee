@@ -21,8 +21,6 @@ export default class TasksList extends Component {
     const {data, headings, length, onChangePage, setDec} = this.props;
     const {currentPageIdx} = this.state
 
-    // if (!data || !data.length) return null;
-
     let points = [];
     for (let i = 0; i < Math.ceil(length / 3); i++) {
       const isNear = currentPageIdx <= i + 2 && currentPageIdx >= i;
